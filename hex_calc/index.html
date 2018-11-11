@@ -1,0 +1,80 @@
+
+<html>
+    <head>
+        <title>Hexadecimal Calculator</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .round{
+                background-color: black ;
+                border-radius : 50%;
+                color:white
+            }
+            input[type="text"] {
+            width: 100%; 
+            box-sizing: border-box;
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing: border-box;
+            }
+         </style>
+        <script type='text/javascript' src='solve.js'></script>
+    </head>
+    
+    <body>
+    <center>
+        <table border="1">
+            
+            <th colspan="5">
+                    HEXADECIMAL CALCULATOR
+                </th>
+            
+            <tr >
+                <td colspan = "5" >
+                    <input type='text'  id='exp' >
+                </td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="black" ><button class="round"   id='id1' onclick="func_1()">1</button></td>
+                <td align="center" bgcolor="black"><button  id='id2' class="round" onclick="func_2()">2</button></td>
+                <td align="center" bgcolor="black"><button  id='id3' class="round" onclick="func_3()">3</button></td>
+                <td align="center" bgcolor="black"><button  id='idA' class="round" onclick="func_A()">A</button></td>
+                <td align="center" bgcolor="black"><button  id='idB' class="round" onclick="func_B()">B</button></td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="black"><button class="round" id='id4' onclick="func_4()">4</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='id5' onclick="func_5()">5</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='id6' onclick="func_6()">6</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='idC' onclick="func_C()">C</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='idD' onclick="func_D()">D</button></td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="black"><button class="round"  id='id7' onclick="func_7()">7</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='id8' onclick="func_8()">8</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='id9' onclick="func_9()">9</button></td>
+                <td align="center" bgcolor="black"><button  class="round" id='idE' onclick="func_E()">E</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='idF' onclick="func_F()">F</button></td>
+            </tr>
+            <tr>
+                <td align="center" bgcolor="black"><button class="round" id='idsign' onclick="func_sign()"> -ve </button></td>
+                <td align="center" bgcolor="black"><button class="round" id='id0' onclick="func_0()">0</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='idp' onclick="func_p()">+</button></td>
+                <td align="center" bgcolor="black"><button class="round"  id='ids' onclick="func_s()">-</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='idm' onclick="func_m()">*</button></td>
+                
+            </tr>
+            <tr>
+               <td align="center" bgcolor="black"><button class="round" id='idand' onclick="func_and()">&</button></td>
+               <td align="center" bgcolor="black"><button class="round" id='idor' onclick="func_or()">|</button></td>
+               <td align="center" bgcolor="black" ><button class="round" id='idnot' onclick="func_not()">~</button></td>
+               <td align="center" bgcolor="black"><button class="round" id='idxor' onclick="func_xor()">^</button></td>
+               <td align="center" bgcolor="black"><button class="round" id='iddiv' onclick="func_div()">/</button></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" bgcolor="black"><button class="round" id='idclr' onclick="func_clr()">CLR</button></td>
+                <td colspan="2" align="center" bgcolor="black"><button class="round" id='idac' onclick="func_ac()">AC</button></td>
+                <td align="center" bgcolor="black"><button class="round" id='ideq' onclick="func_eq()">=</button></td>
+            </tr>
+        </table>
+        </center>
+    </body>
+</html>
