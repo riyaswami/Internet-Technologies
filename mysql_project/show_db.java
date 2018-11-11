@@ -6,6 +6,10 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dell
  */
-public class start extends HttpServlet {
+public class show_db extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,29 +31,26 @@ public class start extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>INDEX</title>");            
+            out.println("<title>DATABASES</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>database manager</h1><form ><fieldset>\n" +
-            "    <legend>CHOICES</legend>\n<center>" +
-                    
-            "    <br><a href=\"create_db\">CREATE DATABASE</a><br>" +
-            "    <br><a href=\"show_db\">SHOW DATABASES</a><br>" +
-            "    <br><a href=\"tb_show\">SHOW TABLES</a><br>" +
-            "    <br><a href=\"show_dt\">SHOW DATA</a><br>" +
-            "    <br><a href=\"show_strct\">SHOW STRUCTURE</a><br>" +
-            "    <br><a href=\"create_tb\">CREATE TABLE</a><br>" +
-            "    <br><a href=\"insert_data\">INSERT DATA</a>" +
-            "  </center></fieldset>\n" +
-            "</form>");
-            out.println("</body>");
+            Database d = new Database();
+            ResultSet rs=d.databses("test");
+            while(rs.next())
+            {
+                String db_name=rs.getString("Database");
+                //System.out.print(db_name);
+                out.println("<form action=\"show_tables\" ><input type =\"submit\" name=\"db\" value=\""+db_name+"\"><br><br></form>");
+            }
+        //    out.println("<h1>Servlet show_db at " + request.getContextPath() + "</h1>");
+            out.println("<a href=\""+request.getHeader("referer")+"\"/>back</body>");
             out.println("</html>");
         }
     }
@@ -66,12 +67,10 @@ public class start extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        if(request.getParameter("create")!=null)
-        {
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<script>alert('database created')"+(String)request.getAttribute("db_name")+"</script>");
-        }
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(show_db.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,7 +85,11 @@ public class start extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(show_db.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

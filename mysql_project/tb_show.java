@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Dell
  */
-public class start extends HttpServlet {
+public class tb_show extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,29 +29,7 @@ public class start extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>INDEX</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>database manager</h1><form ><fieldset>\n" +
-            "    <legend>CHOICES</legend>\n<center>" +
-                    
-            "    <br><a href=\"create_db\">CREATE DATABASE</a><br>" +
-            "    <br><a href=\"show_db\">SHOW DATABASES</a><br>" +
-            "    <br><a href=\"tb_show\">SHOW TABLES</a><br>" +
-            "    <br><a href=\"show_dt\">SHOW DATA</a><br>" +
-            "    <br><a href=\"show_strct\">SHOW STRUCTURE</a><br>" +
-            "    <br><a href=\"create_tb\">CREATE TABLE</a><br>" +
-            "    <br><a href=\"insert_data\">INSERT DATA</a>" +
-            "  </center></fieldset>\n" +
-            "</form>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,12 +44,18 @@ public class start extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        if(request.getParameter("create")!=null)
-        {
         try (PrintWriter out = response.getWriter()) {
-            out.println("<script>alert('database created')"+(String)request.getAttribute("db_name")+"</script>");
-        }
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>tables</title>");            
+            out.println("</head>");
+            out.println("<body><form action= show_tables>");
+            out.println("Enter the name of database: <input type=\"text\" name=\"db\">");
+            out.println("<input type=\"submit\" name=\"sub\"></form>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
